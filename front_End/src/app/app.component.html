@@ -1,0 +1,103 @@
+<div class="row mt-3">
+  <div class="container" style="padding: auto; padding-left: 27%;">
+    <a style="font-family:cursive; font-size:x-large;"><img src="https://upload.wikimedia.org/wikipedia/en/e/ed/Nobel_Prize.png" style="width: 75px; height: 75px;">   Nobel Prize Winners</a>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-7" *ngIf="api1">
+    <div class="container mt-1 offset-1">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">First&nbsp;Name</th>
+            <th scope="col">Last&nbsp;Name</th>
+            <th scope="col">Worked In</th>
+            <th scope="col">Share</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let elem of fetchedData">
+          <tr>
+            <td>{{elem.firstname}}</td>
+            <td>{{elem.surname}}</td>
+            <td>{{elem.motivation}}</td>
+            <td>{{elem.share}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  
+  <div class="col-md-7" *ngIf="api2">
+      <div class="container mt-1 offset-1">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">First&nbsp;Name</th>
+              <th scope="col">Last&nbsp;Name</th>
+              <th scope="col">Year</th>
+              <th scope="col">Category</th>
+              <th scope="col">Worked In</th>
+              <th scope="col">Share</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let elem of fetchedData">
+            <tr *ngFor="let elem2 of elem.laureates">
+              <td>{{elem2.firstname}}</td>
+              <td>{{elem2.surname}}</td>
+              <td>{{elem.year}}</td>
+              <td>{{elem.category}}</td>
+              <td>{{elem2.motivation}}</td>
+              <td>{{elem2.share}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-md-7" *ngIf="api3">
+        <div class="container mt-1 offset-1">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Year</th>
+                <th scope="col">Category</th>
+                <th scope="col">Worked In</th>
+                <th scope="col">Share</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let elem of fetchedData">
+              <tr>
+                <td>{{elem.name}}</td>
+                <td>{{elem.year}}</td>
+                <td>{{elem.category}}</td>
+                <td>{{elem.motivation}}</td>
+                <td>{{elem.share}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+  <div class="col-md-3 mt-1 offset-1">
+    <div class="container">
+      <p style="font-family: cursive; font-size: larger; color: red;">API 1</p>
+      <input #input1 class="form-control mt-2" style="width: 60%; display: inline;" type="text" placeholder="Enter Name to search">&nbsp;
+      <button class="btn btn-primary btn-md" (click)="onSearchName(input1.value)">Search</button>
+      <hr>
+
+      <p style="font-family: cursive; font-size: larger; color: green;">API 2</p>
+      <input #input2 class="form-control mt-2" style="width: 60%; display: inline;" type="text" placeholder="Enter Year">&nbsp;
+      <button class="btn btn-primary btn-md" (click)="onSearchYearAndCategory(input2.value, input3.value)">Search</button>
+      <br><br>
+      <input #input3 class="form-control mt-2" style="width: 60%; display: inline;" type="text" placeholder="Enter Category">&nbsp;
+      <button class="btn btn-primary btn-md" (click)="onSearchYearAndCategory(input2.value, input3.value)">Search</button>  
+      <hr>
+
+      <p style="font-family: cursive; font-size: larger; color: goldenrod;">API 3</p>
+      <button class="btn btn-primary btn-md" (click)="fetchAllSorted()">Fetch All In &nbsp;<i class="fa fa-sort-alpha-asc" style="font-size:24px;color: #ff0000;vertical-align: middle;"></i>&nbsp; Order</button>
+    </div>
+  </div>
+</div>
